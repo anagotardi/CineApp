@@ -8,14 +8,15 @@ function Home() {
         {
             data.map(
                 (filmes, index) =>(
-                    <div className='card' key={index}>
+                    <div className='card bg-zinc-50 rounded-lg' key={index}>
                         <h1>{filmes.title}</h1>
-                        <img src={filmes.image}/>
+                        <img className="card-w[200px] h-[200px] rounded-lg m-2" src={filmes.image}/>
                     <div className='tags'>
-                    <div className='text'>
+                    <div className='text m-5'>
+                    <div className='title m-7'>
                     {
                         filmes.tags.map( tag =>(
-                            <span className="bg-pink-500 text-white  m-1" key={tag}>{tag}</span>
+                            <span className="bg-pink-500 text-white  m-1 p-1 rounded-lg" key={tag}>{tag}</span>
                         ))
                     }
                     {
@@ -27,7 +28,7 @@ function Home() {
                     </div>
                     </div>
                     </div>
-                    
+                    </div>
 
                     
                 )
