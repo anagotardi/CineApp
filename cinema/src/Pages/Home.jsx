@@ -5,7 +5,8 @@ function Home() {
         <> 
         <div className='grid grid-cols-3 gap-3'>
 
-        {
+        
+        {        
             data.map(
                 (filmes, index) =>(
                     <div className='card bg-zinc-50 rounded-lg' key={index}>
