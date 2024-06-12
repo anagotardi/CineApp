@@ -8,6 +8,7 @@ import Filmes from './Pages/Filmes.jsx'
 import Sobre from './Pages/Sobre.jsx'
 import Contato from './Pages/Contato.jsx'
 import Home from './Pages/Home.jsx'
+import DetalhesFilmes from './Pages/DetalhesFIlme.jsx'
 
 //o nome da constante é o mesmo nome que o router puxará ***
 const router = createBrowserRouter(
@@ -18,6 +19,7 @@ const router = createBrowserRouter(
       children: [
         {index: true, element: <Home/>},
         {path: "filmes", element: <Filmes/> },
+        {path: 'filmes/:id', element: <DetalhesFilmes/> },
         {path: "sobre", element:  <Sobre/>},
         {path: "contato", element: <Contato/>},
         {path: "*", element: <PageNotFound/>}

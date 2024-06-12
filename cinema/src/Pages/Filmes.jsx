@@ -1,25 +1,30 @@
 //instalar tailwind css intellisense
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import {Link} from 'react-router-dom';
 
 function Filmes() {
 const [filmes, setFilmes] = useState([])
 
+useEffect(() =>{
     fetch('https://api.themoviedb.org/3/movie/popular?api_key=7c572a9f5b3ba776080330d23bb76e1e')
     .then(response => response.json())
     .then(response => setFilmes(response.results)) //mostra a lista de filmes
     .catch(error => console.log(error))
+},[])
+
+    
     return (  
         <>
         <h1 className="m-4">Filmes</h1>
-        <div className="listaFilmes">
+        <div className="listaFilmes flex flex-row gap-3 flex-wrap"> 
             {
                 filmes.map(
                     filme => (
                         <div className="card-filme" key={filme.id}>
+                        <img src={`https://image.tmdb.org/t/p/w92/${filme.poster_path}`} />
                         <h1>{filme.title}</h1>
-                        <img src={`https://image.tmdb.org/t/p/w342/${filme.poster_path}`} />
-                        <p className="m-4">{filme.overview}</p>
+                        <Link to={`${filme.id}`} className="bg-red-300">Saiba Mais</Link>
                         </div>
                     )
                 )
