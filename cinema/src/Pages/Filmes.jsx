@@ -21,12 +21,10 @@ function Filmes() {
         setSearchTerm(event.target.value);
     };
 
-    // Filtrar filmes com base no termo de pesquisa
     const filteredFilmes = filmes.filter(filme =>
         filme.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
-    // Configuração do carrossel
     const settings = {
         dots: true,
         infinite: false,
@@ -55,7 +53,11 @@ function Filmes() {
     };
 
     return (
-        <div className="container mx-auto px-4">
+        <div>
+            <div className="flex items-center mb-4">
+                <h1 className="text-2xl mr-2">Romances Antigos</h1>
+                <FaHeart className="text-red-500" />
+            </div>
             <div className="flex justify-end mt-4 mb-4">
                 <div className="relative">
                     <input
@@ -63,26 +65,27 @@ function Filmes() {
                         placeholder="Pesquisar..."
                         value={searchTerm}
                         onChange={handleSearchChange}
-                        className="w-64 px-3 py-2 pl-10 border text-red-500 border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-pink-500"
+                        className="w-64 px-3 py-2 pl-10 border text-red-500 rounded-full focus:outline-none focus:ring-2 focus:ring-pink-500"
                     />
                     <IoSearchSharp className="absolute right-5 top-3 text-gray-500 pointer-events-none" />
                 </div>
             </div>
 
-            <div className="flex items-center mb-4">
-                <h1 className="text-xl mr-2">Romances Antigos</h1>
-                <FaHeart className="text-red-500" />
-            </div>
-            
-            <Slider {...settings}>
-                {filteredFilmes.map(filme => (
-                    <div className="card-filme" key={filme.id}>
-                        <img src={`https://image.tmdb.org/t/p/w500/${filme.poster_path}`} alt={filme.title} className="w-full h-auto object-cover" />
-                        <h1>{filme.title}</h1>
-                        <Link to={`${filme.id}`} className="bg-red-300">Saiba Mais</Link>
+            <div className="bg-rose-100">
+                <div className="container mx-auto px-4 py-6">
+                    <div className="rounded-lg shadow-md overflow-hidden">
+                        <Slider {...settings} className="p-4">
+                            {filteredFilmes.map(filme => (
+                                <div className="card-filme" key={filme.id}>
+                                    <img src={`https://image.tmdb.org/t/p/w300/${filme.poster_path}`} alt={filme.title} className="w-full h-auto object-cover" />
+                                    <h1 className="text-lg mt-2">{filme.title}</h1>
+                                    <Link to={`/${filme.id}`} className="bg-red-300 px-4 py-2 rounded-md text-white inline-block mt-2">Saiba Mais</Link>
+                                </div>
+                            ))}
+                        </Slider>
                     </div>
-                ))}
-            </Slider>
+                </div>
+            </div>
         </div>
     );
 }
